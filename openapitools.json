@@ -1,0 +1,43 @@
+{
+  "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "6.5.0"
+  },
+  "generatorName": "swift5",
+  "packageName": "L3velsAPI",
+  "packageVersion": "1.0.0",
+  "swiftUseApiNamespace": true,
+  "responseAs": "Result",
+  "useRxSwift": true,
+  "useRxOptional": true,
+  "useRxBlocking": true,
+  "useRxRelay": true,
+  "useFutures": true,
+  "useSingleRequestParameter": true,
+  "generateModelTests": true,
+  "generateModelDocumentation": true,
+  "generateApiTests": true,
+  "generateApiDocumentation": true,
+  "generateSupportingFiles": true,
+  "podName": "L3velsAPI",
+  "podDescription": "L3vels API sdk",
+  "podAuthors": "L3vels",
+  "podHomepage": "https://github.com/l3vels/l3vels-api-swift",
+  "podLicense": {
+    "name": "MIT",
+    "url": "https://github.com/l3vels/l3vels-api-client-swift/blob/master/LICENSE"
+  },
+  "apiPackage": "com.l3vels.sdk.api",
+  "modelPackage": "com.l3vels.sdk.model",
+  "supportingFiles": [
+    {
+      "file": "README.mustache",
+      "renameTo": "README.md"
+    }
+  ],
+  "additionalProperties": {
+    "apiClientPackage": "com.l3vels.sdk"
+  }
+}
+
