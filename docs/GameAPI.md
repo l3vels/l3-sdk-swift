@@ -4,12 +4,12 @@ All URIs are relative to *https://api-dev.l3vels.xyz*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**projectControllerProjectById**](GameAPI.md#projectcontrollerprojectbyid) | **GET** /v1/game/{id} | Retrieve Game
+[**getGameById**](GameAPI.md#getgamebyid) | **GET** /v1/game/{id} | Retrieve Game
 
 
-# **projectControllerProjectById**
+# **getGameById**
 ```swift
-    open class func projectControllerProjectById(authorization: String, id: String) -> Observable<Project>
+    open class func getGameById(authorization: String, id: String) -> Observable<Project>
 ```
 
 Retrieve Game

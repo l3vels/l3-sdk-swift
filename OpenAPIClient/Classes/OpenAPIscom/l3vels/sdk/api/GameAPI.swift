@@ -24,9 +24,9 @@ open class GameAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Project>
      */
-    open class func projectControllerProjectById(authorization: String, id: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Project> {
+    open class func getGameById(authorization: String, id: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Project> {
         return Observable.create { observer -> Disposable in
-            let requestTask = projectControllerProjectByIdWithRequestBuilder(authorization: authorization, id: id).execute(apiResponseQueue) { result in
+            let requestTask = getGameByIdWithRequestBuilder(authorization: authorization, id: id).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body)
@@ -51,8 +51,8 @@ open class GameAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func projectControllerProjectById(authorization: String, id: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Project, ErrorResponse>) -> Void)) -> RequestTask {
-        return projectControllerProjectByIdWithRequestBuilder(authorization: authorization, id: id).execute(apiResponseQueue) { result in
+    open class func getGameById(authorization: String, id: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Project, ErrorResponse>) -> Void)) -> RequestTask {
+        return getGameByIdWithRequestBuilder(authorization: authorization, id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -70,7 +70,7 @@ open class GameAPI {
      - parameter id: (path) Game or Project Id 
      - returns: RequestBuilder<Project> 
      */
-    open class func projectControllerProjectByIdWithRequestBuilder(authorization: String, id: String) -> RequestBuilder<Project> {
+    open class func getGameByIdWithRequestBuilder(authorization: String, id: String) -> RequestBuilder<Project> {
         var localVariablePath = "/v1/game/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
