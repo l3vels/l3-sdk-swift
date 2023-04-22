@@ -48,19 +48,19 @@ public struct Collection: Codable, JSONEncodable, Hashable {
     /** The current status of the collection. Possible values are: Draft, Active */
     public var status: String
     /** The unique identifier of the account that the Collection belongs to. */
-    public var accountId: Double
-    /** The unique identifier of the project that the collection is associated with. This allows developers to organize their collections by project and helps with tracking and reporting. */
-    public var projectId: String
+    public var accountId: String
+    /** The unique identifier of the game that the collection is associated with. This allows developers to organize their collections by game and helps with tracking and reporting. */
+    public var gameId: String
     /** The date when the collection was created. */
     public var createdOn: Date
     /** The date when the collection was last modified. */
     public var modifiedOn: Date
     /** The Id of the user who created the collection. */
-    public var createdBy: Double
+    public var createdBy: String
     /** The Id of the user who last modified the collection. */
-    public var modifiedBy: Double
+    public var modifiedBy: String
 
-    public init(id: String, uniqueId: String, name: String, description: String, logoImage: String, medias: [String], mainMedia: String, url: String, webLink: String, supply: Double, customPropertyProps: AnyCodable, socialLinks: [String], customAssetProps: AnyCodable, categories: AnyCodable, status: String, accountId: Double, projectId: String, createdOn: Date, modifiedOn: Date, createdBy: Double, modifiedBy: Double) {
+    public init(id: String, uniqueId: String, name: String, description: String, logoImage: String, medias: [String], mainMedia: String, url: String, webLink: String, supply: Double, customPropertyProps: AnyCodable, socialLinks: [String], customAssetProps: AnyCodable, categories: AnyCodable, status: String, accountId: String, gameId: String, createdOn: Date, modifiedOn: Date, createdBy: String, modifiedBy: String) {
         self.id = id
         self.uniqueId = uniqueId
         self.name = name
@@ -77,7 +77,7 @@ public struct Collection: Codable, JSONEncodable, Hashable {
         self.categories = categories
         self.status = status
         self.accountId = accountId
-        self.projectId = projectId
+        self.gameId = gameId
         self.createdOn = createdOn
         self.modifiedOn = modifiedOn
         self.createdBy = createdBy
@@ -101,7 +101,7 @@ public struct Collection: Codable, JSONEncodable, Hashable {
         case categories
         case status
         case accountId = "account_id"
-        case projectId = "project_id"
+        case gameId = "game_id"
         case createdOn = "created_on"
         case modifiedOn = "modified_on"
         case createdBy = "created_by"
@@ -128,7 +128,7 @@ public struct Collection: Codable, JSONEncodable, Hashable {
         try container.encode(categories, forKey: .categories)
         try container.encode(status, forKey: .status)
         try container.encode(accountId, forKey: .accountId)
-        try container.encode(projectId, forKey: .projectId)
+        try container.encode(gameId, forKey: .gameId)
         try container.encode(createdOn, forKey: .createdOn)
         try container.encode(modifiedOn, forKey: .modifiedOn)
         try container.encode(createdBy, forKey: .createdBy)

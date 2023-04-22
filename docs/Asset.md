@@ -18,13 +18,13 @@ Name | Type | Description | Notes
 **assetUrl** | **String** | The asset URL. | 
 **medias** | **[String]** | Additional images associated with the asset, such as screenshots or promotional images. | 
 **mainMedia** | **String** | The main or featured image associated with the asset. You can set it from the Dashboard as main image. | 
-**accountId** | **Double** | The unique identifier of the account that the Collection belongs to. | 
-**projectId** | **String** | The unique identifier of the project that the asset is associated with. This allows developers to organize their assets by project and helps with tracking and reporting. | 
-**collectionId** | **String** | The unique identifier of the collection that the asset is associated with. This allows developers to organize their collections by project and helps with tracking and reporting. | 
+**accountId** | **String** | The unique identifier of the account that the Collection belongs to. | 
+**gameId** | **String** | The unique identifier of the game that the asset is associated with. This allows developers to organize their assets by game and helps with tracking and reporting. | 
+**collectionId** | **String** | The unique identifier of the collection that the asset is associated with. This allows developers to organize their collections by game and helps with tracking and reporting. | 
 **createdOn** | **Date** | The date when the collection was created. | 
 **modifiedOn** | **Date** | The date when the collection was last modified. | 
-**createdBy** | **Double** | The Id of the user who created the collection. | 
-**modifiedBy** | **Double** | The Id of the user who last modified the collection. | 
+**createdBy** | **String** | The Id of the user who created the collection. | 
+**modifiedBy** | **String** | The Id of the user who last modified the collection. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

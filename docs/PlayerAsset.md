@@ -8,12 +8,12 @@ Name | Type | Description | Notes
 **playerId** | **String** | The unique identifier of the player that the asset is associated with. | 
 **assetId** | **String** | The unique identifier of the asset that the asset is associated with. | 
 **collectionId** | **String** | The unique identifier of the collection that the Player asset is associated with. | 
-**accountId** | **Double** | The unique identifier of the account that the Player belongs to. | 
-**projectId** | **String** | The unique identifier of the project that the Player is associated with. This allows developers to organize their players by project and helps with tracking and reporting. | 
+**accountId** | **String** | The unique identifier of the account that the Player belongs to. | 
+**gameId** | **String** | The unique identifier of the game that the Player is associated with. This allows developers to organize their players by game and helps with tracking and reporting. | 
 **createdOn** | **Date** | The date when the player was created. | 
 **modifiedOn** | **Date** | The date when the player was last modified. | 
-**createdBy** | **Double** | The Id of the user who created the player. | 
-**modifiedBy** | **Double** | The Id of the user who last modified the player. | 
+**createdBy** | **String** | The Id of the user who created the player. | 
+**modifiedBy** | **String** | The Id of the user who last modified the player. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

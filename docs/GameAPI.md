@@ -9,20 +9,20 @@ Method | HTTP request | Description
 
 # **getGameById**
 ```swift
-    open class func getGameById(authorization: String, id: String) -> Observable<Project>
+    open class func getGameById(authorization: String, id: String) -> Observable<Game>
 ```
 
 Retrieve Game
 
-Get game/project by ID created on the platform.
+Get Game by ID created on the platform.
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authorization = "authorization_example" // String | API key is associated with multiple projects. Please include it in to use developers API.
-let id = "id_example" // String | Game or Project Id
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
+let id = "id_example" // String | Game or Game Id
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -31,12 +31,12 @@ let id = "id_example" // String | Game or Project Id
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String** | API key is associated with multiple projects. Please include it in to use developers API. | 
- **id** | **String** | Game or Project Id | 
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
+ **id** | **String** | Game or Game Id | 
 
 ### Return type
 
-[**Project**](Project.md)
+[**Game**](Game.md)
 
 ### Authorization
 

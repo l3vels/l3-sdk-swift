@@ -19,14 +19,14 @@ open class PlayerAPI {
     /**
      Count players
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter projectId: (path) Game Id 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter gameId: (path) Game Id 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Double>
      */
-    open class func countPlayersByGameId(authorization: String, projectId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Double> {
+    open class func countPlayersByGameId(authorization: String, gameId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Double> {
         return Observable.create { observer -> Disposable in
-            let requestTask = countPlayersByGameIdWithRequestBuilder(authorization: authorization, projectId: projectId).execute(apiResponseQueue) { result in
+            let requestTask = countPlayersByGameIdWithRequestBuilder(authorization: authorization, gameId: gameId).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body)
@@ -45,14 +45,14 @@ open class PlayerAPI {
     /**
      Count players
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter projectId: (path) Game Id 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter gameId: (path) Game Id 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func countPlayersByGameId(authorization: String, projectId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Double, ErrorResponse>) -> Void)) -> RequestTask {
-        return countPlayersByGameIdWithRequestBuilder(authorization: authorization, projectId: projectId).execute(apiResponseQueue) { result in
+    open class func countPlayersByGameId(authorization: String, gameId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Double, ErrorResponse>) -> Void)) -> RequestTask {
+        return countPlayersByGameIdWithRequestBuilder(authorization: authorization, gameId: gameId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -64,17 +64,17 @@ open class PlayerAPI {
 
     /**
      Count players
-     - GET /v1/player/count/{project_id}
+     - GET /v1/player/count/{game_id}
      - Count players in game. Example: count players in game Call of Duty.
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter projectId: (path) Game Id 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter gameId: (path) Game Id 
      - returns: RequestBuilder<Double> 
      */
-    open class func countPlayersByGameIdWithRequestBuilder(authorization: String, projectId: String) -> RequestBuilder<Double> {
-        var localVariablePath = "/v1/player/count/{project_id}"
-        let projectIdPreEscape = "\(APIHelper.mapValueToPathItem(projectId))"
-        let projectIdPostEscape = projectIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{project_id}", with: projectIdPostEscape, options: .literal, range: nil)
+    open class func countPlayersByGameIdWithRequestBuilder(authorization: String, gameId: String) -> RequestBuilder<Double> {
+        var localVariablePath = "/v1/player/count/{game_id}"
+        let gameIdPreEscape = "\(APIHelper.mapValueToPathItem(gameId))"
+        let gameIdPostEscape = gameIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{game_id}", with: gameIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
@@ -94,14 +94,14 @@ open class PlayerAPI {
     /**
      Create new player
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter createPlayerDto: (body)  
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter createPlayerInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Player>
      */
-    open class func createPlayer(authorization: String, createPlayerDto: CreatePlayerDto, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Player> {
+    open class func createPlayer(authorization: String, createPlayerInput: CreatePlayerInput, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Player> {
         return Observable.create { observer -> Disposable in
-            let requestTask = createPlayerWithRequestBuilder(authorization: authorization, createPlayerDto: createPlayerDto).execute(apiResponseQueue) { result in
+            let requestTask = createPlayerWithRequestBuilder(authorization: authorization, createPlayerInput: createPlayerInput).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body)
@@ -120,14 +120,14 @@ open class PlayerAPI {
     /**
      Create new player
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter createPlayerDto: (body)  
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter createPlayerInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func createPlayer(authorization: String, createPlayerDto: CreatePlayerDto, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Player, ErrorResponse>) -> Void)) -> RequestTask {
-        return createPlayerWithRequestBuilder(authorization: authorization, createPlayerDto: createPlayerDto).execute(apiResponseQueue) { result in
+    open class func createPlayer(authorization: String, createPlayerInput: CreatePlayerInput, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Player, ErrorResponse>) -> Void)) -> RequestTask {
+        return createPlayerWithRequestBuilder(authorization: authorization, createPlayerInput: createPlayerInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -140,15 +140,15 @@ open class PlayerAPI {
     /**
      Create new player
      - POST /v1/player
-     - Create new player for game/project. Example: Create new player Jack in game Call of Duty.
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter createPlayerDto: (body)  
+     - Create new player for Game. Example: Create new player Jack in game Call of Duty.
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter createPlayerInput: (body)  
      - returns: RequestBuilder<Player> 
      */
-    open class func createPlayerWithRequestBuilder(authorization: String, createPlayerDto: CreatePlayerDto) -> RequestBuilder<Player> {
+    open class func createPlayerWithRequestBuilder(authorization: String, createPlayerInput: CreatePlayerInput) -> RequestBuilder<Player> {
         let localVariablePath = "/v1/player"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createPlayerDto)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createPlayerInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -164,17 +164,98 @@ open class PlayerAPI {
     }
 
     /**
+     Retrieve player asset by ID
+     
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter id: (path)  
+     - parameter gameId: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - returns: Observable<PlayerAsset>
+     */
+    open class func getPlayerAssetById(authorization: String, id: String, gameId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<PlayerAsset> {
+        return Observable.create { observer -> Disposable in
+            let requestTask = getPlayerAssetByIdWithRequestBuilder(authorization: authorization, id: id, gameId: gameId).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    observer.onNext(response.body)
+                case let .failure(error):
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            
+            return Disposables.create {
+                requestTask.cancel()
+            }
+        }
+    }
+
+    /**
+     Retrieve player asset by ID
+     
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter id: (path)  
+     - parameter gameId: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func getPlayerAssetById(authorization: String, id: String, gameId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<PlayerAsset, ErrorResponse>) -> Void)) -> RequestTask {
+        return getPlayerAssetByIdWithRequestBuilder(authorization: authorization, id: id, gameId: gameId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Retrieve player asset by ID
+     - GET /v1/player-asset/{game_id}/{id}
+     - Retrieve player asset by ID. Player asset represents a single asset that a player owns. It has amount field that represents how many of this asset player owns.
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter id: (path)  
+     - parameter gameId: (path)  
+     - returns: RequestBuilder<PlayerAsset> 
+     */
+    open class func getPlayerAssetByIdWithRequestBuilder(authorization: String, id: String, gameId: String) -> RequestBuilder<PlayerAsset> {
+        var localVariablePath = "/v1/player-asset/{game_id}/{id}"
+        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
+        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+        let gameIdPreEscape = "\(APIHelper.mapValueToPathItem(gameId))"
+        let gameIdPostEscape = gameIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{game_id}", with: gameIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Authorization": authorization.encodeToJSON(),
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<PlayerAsset>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
+    }
+
+    /**
      Retrieve player by ID
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter id: (path) Player ID that you created in your game/project. Example: Jack, George, etc. 
-     - parameter projectId: (path) Game/project ID to find asset in. Example: Call of Duty, Fortnite, etc. 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter id: (path) Player ID that you created in your Game. Example: Jack, George, etc. 
+     - parameter gameId: (path) Game ID to find asset in. Example: Call of Duty, Fortnite, etc. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Player>
      */
-    open class func getPlayerById(authorization: String, id: String, projectId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Player> {
+    open class func getPlayerById(authorization: String, id: String, gameId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Player> {
         return Observable.create { observer -> Disposable in
-            let requestTask = getPlayerByIdWithRequestBuilder(authorization: authorization, id: id, projectId: projectId).execute(apiResponseQueue) { result in
+            let requestTask = getPlayerByIdWithRequestBuilder(authorization: authorization, id: id, gameId: gameId).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body)
@@ -193,15 +274,15 @@ open class PlayerAPI {
     /**
      Retrieve player by ID
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter id: (path) Player ID that you created in your game/project. Example: Jack, George, etc. 
-     - parameter projectId: (path) Game/project ID to find asset in. Example: Call of Duty, Fortnite, etc. 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter id: (path) Player ID that you created in your Game. Example: Jack, George, etc. 
+     - parameter gameId: (path) Game ID to find asset in. Example: Call of Duty, Fortnite, etc. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getPlayerById(authorization: String, id: String, projectId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Player, ErrorResponse>) -> Void)) -> RequestTask {
-        return getPlayerByIdWithRequestBuilder(authorization: authorization, id: id, projectId: projectId).execute(apiResponseQueue) { result in
+    open class func getPlayerById(authorization: String, id: String, gameId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Player, ErrorResponse>) -> Void)) -> RequestTask {
+        return getPlayerByIdWithRequestBuilder(authorization: authorization, id: id, gameId: gameId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -213,21 +294,21 @@ open class PlayerAPI {
 
     /**
      Retrieve player by ID
-     - GET /v1/player/{project_id}/{id}
-     - Retrieves a specific player by ID associated with game/project. Example: retrieve player Jack from game Call of Duty.
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter id: (path) Player ID that you created in your game/project. Example: Jack, George, etc. 
-     - parameter projectId: (path) Game/project ID to find asset in. Example: Call of Duty, Fortnite, etc. 
+     - GET /v1/player/{game_id}/{id}
+     - Retrieves a specific player by ID associated with Game. Example: retrieve player Jack from game Call of Duty.
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter id: (path) Player ID that you created in your Game. Example: Jack, George, etc. 
+     - parameter gameId: (path) Game ID to find asset in. Example: Call of Duty, Fortnite, etc. 
      - returns: RequestBuilder<Player> 
      */
-    open class func getPlayerByIdWithRequestBuilder(authorization: String, id: String, projectId: String) -> RequestBuilder<Player> {
-        var localVariablePath = "/v1/player/{project_id}/{id}"
+    open class func getPlayerByIdWithRequestBuilder(authorization: String, id: String, gameId: String) -> RequestBuilder<Player> {
+        var localVariablePath = "/v1/player/{game_id}/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let projectIdPreEscape = "\(APIHelper.mapValueToPathItem(projectId))"
-        let projectIdPostEscape = projectIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{project_id}", with: projectIdPostEscape, options: .literal, range: nil)
+        let gameIdPreEscape = "\(APIHelper.mapValueToPathItem(gameId))"
+        let gameIdPostEscape = gameIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{game_id}", with: gameIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
@@ -247,8 +328,8 @@ open class PlayerAPI {
     /**
      Retrieve players
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter projectId: (query) Game/project ID to find player in your game. Example: Fortnite, Minecraft, etc. 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter gameId: (query) Game ID to find player in your game. Example: Fortnite, Minecraft, etc. 
      - parameter sort: (query) Player field to sort by. You can sort by name, created_on and etc. (optional)
      - parameter order: (query) Sort order (ASC for ascending or DESC for descending) (optional)
      - parameter searchText: (query) Search player by name (optional)
@@ -257,9 +338,9 @@ open class PlayerAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[Player]>
      */
-    open class func getPlayers(authorization: String, projectId: String, sort: String? = nil, order: String? = nil, searchText: String? = nil, limit: Double? = nil, page: Double? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<[Player]> {
+    open class func getPlayers(authorization: String, gameId: String, sort: String? = nil, order: String? = nil, searchText: String? = nil, limit: Double? = nil, page: Double? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<[Player]> {
         return Observable.create { observer -> Disposable in
-            let requestTask = getPlayersWithRequestBuilder(authorization: authorization, projectId: projectId, sort: sort, order: order, searchText: searchText, limit: limit, page: page).execute(apiResponseQueue) { result in
+            let requestTask = getPlayersWithRequestBuilder(authorization: authorization, gameId: gameId, sort: sort, order: order, searchText: searchText, limit: limit, page: page).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body)
@@ -278,8 +359,8 @@ open class PlayerAPI {
     /**
      Retrieve players
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter projectId: (query) Game/project ID to find player in your game. Example: Fortnite, Minecraft, etc. 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter gameId: (query) Game ID to find player in your game. Example: Fortnite, Minecraft, etc. 
      - parameter sort: (query) Player field to sort by. You can sort by name, created_on and etc. (optional)
      - parameter order: (query) Sort order (ASC for ascending or DESC for descending) (optional)
      - parameter searchText: (query) Search player by name (optional)
@@ -289,8 +370,8 @@ open class PlayerAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getPlayers(authorization: String, projectId: String, sort: String? = nil, order: String? = nil, searchText: String? = nil, limit: Double? = nil, page: Double? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[Player], ErrorResponse>) -> Void)) -> RequestTask {
-        return getPlayersWithRequestBuilder(authorization: authorization, projectId: projectId, sort: sort, order: order, searchText: searchText, limit: limit, page: page).execute(apiResponseQueue) { result in
+    open class func getPlayers(authorization: String, gameId: String, sort: String? = nil, order: String? = nil, searchText: String? = nil, limit: Double? = nil, page: Double? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[Player], ErrorResponse>) -> Void)) -> RequestTask {
+        return getPlayersWithRequestBuilder(authorization: authorization, gameId: gameId, sort: sort, order: order, searchText: searchText, limit: limit, page: page).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -304,8 +385,8 @@ open class PlayerAPI {
      Retrieve players
      - GET /v1/player
      - Retrieve a list of players that match the specified filter criteria. Developers can use this method to retrieve players by name, category, status, or other properties. Example: Retrieve players from game Call of Duty.
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter projectId: (query) Game/project ID to find player in your game. Example: Fortnite, Minecraft, etc. 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter gameId: (query) Game ID to find player in your game. Example: Fortnite, Minecraft, etc. 
      - parameter sort: (query) Player field to sort by. You can sort by name, created_on and etc. (optional)
      - parameter order: (query) Sort order (ASC for ascending or DESC for descending) (optional)
      - parameter searchText: (query) Search player by name (optional)
@@ -313,14 +394,14 @@ open class PlayerAPI {
      - parameter page: (query) Page number (optional)
      - returns: RequestBuilder<[Player]> 
      */
-    open class func getPlayersWithRequestBuilder(authorization: String, projectId: String, sort: String? = nil, order: String? = nil, searchText: String? = nil, limit: Double? = nil, page: Double? = nil) -> RequestBuilder<[Player]> {
+    open class func getPlayersWithRequestBuilder(authorization: String, gameId: String, sort: String? = nil, order: String? = nil, searchText: String? = nil, limit: Double? = nil, page: Double? = nil) -> RequestBuilder<[Player]> {
         let localVariablePath = "/v1/player"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "project_id": (wrappedValue: projectId.encodeToJSON(), isExplode: true),
+            "game_id": (wrappedValue: gameId.encodeToJSON(), isExplode: true),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: true),
             "order": (wrappedValue: order?.encodeToJSON(), isExplode: true),
             "search_text": (wrappedValue: searchText?.encodeToJSON(), isExplode: true),
@@ -340,93 +421,12 @@ open class PlayerAPI {
     }
 
     /**
-     Retrieve player asset by ID
-     
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter id: (path)  
-     - parameter projectId: (path)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Observable<PlayerAsset>
-     */
-    open class func playerAssetControllerPlayerAssetById(authorization: String, id: String, projectId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<PlayerAsset> {
-        return Observable.create { observer -> Disposable in
-            let requestTask = playerAssetControllerPlayerAssetByIdWithRequestBuilder(authorization: authorization, id: id, projectId: projectId).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    observer.onNext(response.body)
-                case let .failure(error):
-                    observer.onError(error)
-                }
-                observer.onCompleted()
-            }
-            
-            return Disposables.create {
-                requestTask.cancel()
-            }
-        }
-    }
-
-    /**
-     Retrieve player asset by ID
-     
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter id: (path)  
-     - parameter projectId: (path)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the result
-     */
-    @discardableResult
-    open class func playerAssetControllerPlayerAssetById(authorization: String, id: String, projectId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<PlayerAsset, ErrorResponse>) -> Void)) -> RequestTask {
-        return playerAssetControllerPlayerAssetByIdWithRequestBuilder(authorization: authorization, id: id, projectId: projectId).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(.success(response.body))
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        }
-    }
-
-    /**
-     Retrieve player asset by ID
-     - GET /v1/player-asset/{project_id}/{id}
-     - Retrieve player asset by ID. Player asset represents a single asset that a player owns. It has amount field that represents how many of this asset player owns.
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter id: (path)  
-     - parameter projectId: (path)  
-     - returns: RequestBuilder<PlayerAsset> 
-     */
-    open class func playerAssetControllerPlayerAssetByIdWithRequestBuilder(authorization: String, id: String, projectId: String) -> RequestBuilder<PlayerAsset> {
-        var localVariablePath = "/v1/player-asset/{project_id}/{id}"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let projectIdPreEscape = "\(APIHelper.mapValueToPathItem(projectId))"
-        let projectIdPostEscape = projectIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{project_id}", with: projectIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            "Authorization": authorization.encodeToJSON(),
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<PlayerAsset>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
-    }
-
-    /**
      Retrieve player assets
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter projectId: (query) Game/project ID to find player assets in your game. Example: Fortnite, Minecraft, etc. 
-     - parameter assetId: (query) Game/project ID to find player assets in your game. Example: Fortnite, Minecraft, etc. (optional)
-     - parameter playerId: (query) Game/project ID to find player assets in your game. Example: Fortnite, Minecraft, etc. (optional)
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter gameId: (query) Game ID to find player assets in your game. Example: Fortnite, Minecraft, etc. 
+     - parameter assetId: (query) Game ID to find player assets in your game. Example: Fortnite, Minecraft, etc. (optional)
+     - parameter playerId: (query) Game ID to find player assets in your game. Example: Fortnite, Minecraft, etc. (optional)
      - parameter sort: (query) Player asset field to sort by. You can sort by name, created_on and etc. (optional)
      - parameter order: (query) Sort order (ASC for ascending or DESC for descending) (optional)
      - parameter limit: (query) Number of player assets to return per page (optional)
@@ -434,9 +434,9 @@ open class PlayerAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[PlayerAsset]>
      */
-    open class func playerAssetControllerPlayerAssets(authorization: String, projectId: String, assetId: String? = nil, playerId: String? = nil, sort: String? = nil, order: String? = nil, limit: Double? = nil, page: Double? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<[PlayerAsset]> {
+    open class func playerAssets(authorization: String, gameId: String, assetId: String? = nil, playerId: String? = nil, sort: String? = nil, order: String? = nil, limit: Double? = nil, page: Double? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<[PlayerAsset]> {
         return Observable.create { observer -> Disposable in
-            let requestTask = playerAssetControllerPlayerAssetsWithRequestBuilder(authorization: authorization, projectId: projectId, assetId: assetId, playerId: playerId, sort: sort, order: order, limit: limit, page: page).execute(apiResponseQueue) { result in
+            let requestTask = playerAssetsWithRequestBuilder(authorization: authorization, gameId: gameId, assetId: assetId, playerId: playerId, sort: sort, order: order, limit: limit, page: page).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body)
@@ -455,10 +455,10 @@ open class PlayerAPI {
     /**
      Retrieve player assets
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter projectId: (query) Game/project ID to find player assets in your game. Example: Fortnite, Minecraft, etc. 
-     - parameter assetId: (query) Game/project ID to find player assets in your game. Example: Fortnite, Minecraft, etc. (optional)
-     - parameter playerId: (query) Game/project ID to find player assets in your game. Example: Fortnite, Minecraft, etc. (optional)
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter gameId: (query) Game ID to find player assets in your game. Example: Fortnite, Minecraft, etc. 
+     - parameter assetId: (query) Game ID to find player assets in your game. Example: Fortnite, Minecraft, etc. (optional)
+     - parameter playerId: (query) Game ID to find player assets in your game. Example: Fortnite, Minecraft, etc. (optional)
      - parameter sort: (query) Player asset field to sort by. You can sort by name, created_on and etc. (optional)
      - parameter order: (query) Sort order (ASC for ascending or DESC for descending) (optional)
      - parameter limit: (query) Number of player assets to return per page (optional)
@@ -467,8 +467,8 @@ open class PlayerAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func playerAssetControllerPlayerAssets(authorization: String, projectId: String, assetId: String? = nil, playerId: String? = nil, sort: String? = nil, order: String? = nil, limit: Double? = nil, page: Double? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[PlayerAsset], ErrorResponse>) -> Void)) -> RequestTask {
-        return playerAssetControllerPlayerAssetsWithRequestBuilder(authorization: authorization, projectId: projectId, assetId: assetId, playerId: playerId, sort: sort, order: order, limit: limit, page: page).execute(apiResponseQueue) { result in
+    open class func playerAssets(authorization: String, gameId: String, assetId: String? = nil, playerId: String? = nil, sort: String? = nil, order: String? = nil, limit: Double? = nil, page: Double? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[PlayerAsset], ErrorResponse>) -> Void)) -> RequestTask {
+        return playerAssetsWithRequestBuilder(authorization: authorization, gameId: gameId, assetId: assetId, playerId: playerId, sort: sort, order: order, limit: limit, page: page).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -481,25 +481,25 @@ open class PlayerAPI {
     /**
      Retrieve player assets
      - GET /v1/player-asset
-     - This API method retrieves a list of Player assets that match the specified filter criteria. Developers can use this method to retrieve Player assets by player, game/project or other properties.
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter projectId: (query) Game/project ID to find player assets in your game. Example: Fortnite, Minecraft, etc. 
-     - parameter assetId: (query) Game/project ID to find player assets in your game. Example: Fortnite, Minecraft, etc. (optional)
-     - parameter playerId: (query) Game/project ID to find player assets in your game. Example: Fortnite, Minecraft, etc. (optional)
+     - This API method retrieves a list of Player assets that match the specified filter criteria. Developers can use this method to retrieve Player assets by player, Game or other properties.
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter gameId: (query) Game ID to find player assets in your game. Example: Fortnite, Minecraft, etc. 
+     - parameter assetId: (query) Game ID to find player assets in your game. Example: Fortnite, Minecraft, etc. (optional)
+     - parameter playerId: (query) Game ID to find player assets in your game. Example: Fortnite, Minecraft, etc. (optional)
      - parameter sort: (query) Player asset field to sort by. You can sort by name, created_on and etc. (optional)
      - parameter order: (query) Sort order (ASC for ascending or DESC for descending) (optional)
      - parameter limit: (query) Number of player assets to return per page (optional)
      - parameter page: (query) Page number (optional)
      - returns: RequestBuilder<[PlayerAsset]> 
      */
-    open class func playerAssetControllerPlayerAssetsWithRequestBuilder(authorization: String, projectId: String, assetId: String? = nil, playerId: String? = nil, sort: String? = nil, order: String? = nil, limit: Double? = nil, page: Double? = nil) -> RequestBuilder<[PlayerAsset]> {
+    open class func playerAssetsWithRequestBuilder(authorization: String, gameId: String, assetId: String? = nil, playerId: String? = nil, sort: String? = nil, order: String? = nil, limit: Double? = nil, page: Double? = nil) -> RequestBuilder<[PlayerAsset]> {
         let localVariablePath = "/v1/player-asset"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "project_id": (wrappedValue: projectId.encodeToJSON(), isExplode: true),
+            "game_id": (wrappedValue: gameId.encodeToJSON(), isExplode: true),
             "asset_id": (wrappedValue: assetId?.encodeToJSON(), isExplode: true),
             "player_id": (wrappedValue: playerId?.encodeToJSON(), isExplode: true),
             "sort": (wrappedValue: sort?.encodeToJSON(), isExplode: true),
@@ -522,7 +522,7 @@ open class PlayerAPI {
     /**
      Update an existing Player
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Player>
      */
@@ -547,7 +547,7 @@ open class PlayerAPI {
     /**
      Update an existing Player
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
@@ -567,7 +567,7 @@ open class PlayerAPI {
      Update an existing Player
      - PUT /v1/player
      - This API method allows developers to update an existing Player by providing the ID of the Player and the updated properties and associated assets.
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
      - returns: RequestBuilder<Player> 
      */
     open class func updatePlayerWithRequestBuilder(authorization: String) -> RequestBuilder<Player> {

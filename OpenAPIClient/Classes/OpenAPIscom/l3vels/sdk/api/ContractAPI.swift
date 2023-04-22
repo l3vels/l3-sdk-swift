@@ -19,15 +19,15 @@ open class ContractAPI {
     /**
      Collection size
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
      - parameter collectionId: (query)  
-     - parameter projectId: (query)  
+     - parameter gameId: (query)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Void>
      */
-    open class func contractControllerCollectionSize(authorization: String, collectionId: String, projectId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func countContractsByGameId(authorization: String, collectionId: String, gameId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
-            let requestTask = contractControllerCollectionSizeWithRequestBuilder(authorization: authorization, collectionId: collectionId, projectId: projectId).execute(apiResponseQueue) { result in
+            let requestTask = countContractsByGameIdWithRequestBuilder(authorization: authorization, collectionId: collectionId, gameId: gameId).execute(apiResponseQueue) { result in
                 switch result {
                 case .success:
                     observer.onNext(())
@@ -46,15 +46,15 @@ open class ContractAPI {
     /**
      Collection size
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
      - parameter collectionId: (query)  
-     - parameter projectId: (query)  
+     - parameter gameId: (query)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func contractControllerCollectionSize(authorization: String, collectionId: String, projectId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, ErrorResponse>) -> Void)) -> RequestTask {
-        return contractControllerCollectionSizeWithRequestBuilder(authorization: authorization, collectionId: collectionId, projectId: projectId).execute(apiResponseQueue) { result in
+    open class func countContractsByGameId(authorization: String, collectionId: String, gameId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, ErrorResponse>) -> Void)) -> RequestTask {
+        return countContractsByGameIdWithRequestBuilder(authorization: authorization, collectionId: collectionId, gameId: gameId).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion(.success(()))
@@ -67,13 +67,13 @@ open class ContractAPI {
     /**
      Collection size
      - GET /v1/contract/collection-size
-     - Get size of collection
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
+     - Count total contract in game.
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
      - parameter collectionId: (query)  
-     - parameter projectId: (query)  
+     - parameter gameId: (query)  
      - returns: RequestBuilder<Void> 
      */
-    open class func contractControllerCollectionSizeWithRequestBuilder(authorization: String, collectionId: String, projectId: String) -> RequestBuilder<Void> {
+    open class func countContractsByGameIdWithRequestBuilder(authorization: String, collectionId: String, gameId: String) -> RequestBuilder<Void> {
         let localVariablePath = "/v1/contract/collection-size"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -81,7 +81,7 @@ open class ContractAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "collection_id": (wrappedValue: collectionId.encodeToJSON(), isExplode: true),
-            "project_id": (wrappedValue: projectId.encodeToJSON(), isExplode: true),
+            "game_id": (wrappedValue: gameId.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -98,15 +98,15 @@ open class ContractAPI {
     /**
      Get Contract URI
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
      - parameter collectionId: (query)  
-     - parameter projectId: (query)  
+     - parameter gameId: (query)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Void>
      */
-    open class func contractControllerContractUri(authorization: String, collectionId: String, projectId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func getContractURI(authorization: String, collectionId: String, gameId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
-            let requestTask = contractControllerContractUriWithRequestBuilder(authorization: authorization, collectionId: collectionId, projectId: projectId).execute(apiResponseQueue) { result in
+            let requestTask = getContractURIWithRequestBuilder(authorization: authorization, collectionId: collectionId, gameId: gameId).execute(apiResponseQueue) { result in
                 switch result {
                 case .success:
                     observer.onNext(())
@@ -125,15 +125,15 @@ open class ContractAPI {
     /**
      Get Contract URI
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
      - parameter collectionId: (query)  
-     - parameter projectId: (query)  
+     - parameter gameId: (query)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func contractControllerContractUri(authorization: String, collectionId: String, projectId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, ErrorResponse>) -> Void)) -> RequestTask {
-        return contractControllerContractUriWithRequestBuilder(authorization: authorization, collectionId: collectionId, projectId: projectId).execute(apiResponseQueue) { result in
+    open class func getContractURI(authorization: String, collectionId: String, gameId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, ErrorResponse>) -> Void)) -> RequestTask {
+        return getContractURIWithRequestBuilder(authorization: authorization, collectionId: collectionId, gameId: gameId).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion(.success(()))
@@ -147,12 +147,12 @@ open class ContractAPI {
      Get Contract URI
      - GET /v1/contract/contract-uri
      - Gets contract uri of contract
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
      - parameter collectionId: (query)  
-     - parameter projectId: (query)  
+     - parameter gameId: (query)  
      - returns: RequestBuilder<Void> 
      */
-    open class func contractControllerContractUriWithRequestBuilder(authorization: String, collectionId: String, projectId: String) -> RequestBuilder<Void> {
+    open class func getContractURIWithRequestBuilder(authorization: String, collectionId: String, gameId: String) -> RequestBuilder<Void> {
         let localVariablePath = "/v1/contract/contract-uri"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -160,7 +160,7 @@ open class ContractAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "collection_id": (wrappedValue: collectionId.encodeToJSON(), isExplode: true),
-            "project_id": (wrappedValue: projectId.encodeToJSON(), isExplode: true),
+            "game_id": (wrappedValue: gameId.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -177,14 +177,14 @@ open class ContractAPI {
     /**
      Update Contract URI
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter setContractUriDto: (body)  
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter setContractUriInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Void>
      */
-    open class func contractControllerSetContractUri(authorization: String, setContractUriDto: SetContractUriDto, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func setContractURI(authorization: String, setContractUriInput: SetContractUriInput, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
-            let requestTask = contractControllerSetContractUriWithRequestBuilder(authorization: authorization, setContractUriDto: setContractUriDto).execute(apiResponseQueue) { result in
+            let requestTask = setContractURIWithRequestBuilder(authorization: authorization, setContractUriInput: setContractUriInput).execute(apiResponseQueue) { result in
                 switch result {
                 case .success:
                     observer.onNext(())
@@ -203,14 +203,14 @@ open class ContractAPI {
     /**
      Update Contract URI
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter setContractUriDto: (body)  
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter setContractUriInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func contractControllerSetContractUri(authorization: String, setContractUriDto: SetContractUriDto, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, ErrorResponse>) -> Void)) -> RequestTask {
-        return contractControllerSetContractUriWithRequestBuilder(authorization: authorization, setContractUriDto: setContractUriDto).execute(apiResponseQueue) { result in
+    open class func setContractURI(authorization: String, setContractUriInput: SetContractUriInput, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, ErrorResponse>) -> Void)) -> RequestTask {
+        return setContractURIWithRequestBuilder(authorization: authorization, setContractUriInput: setContractUriInput).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion(.success(()))
@@ -224,14 +224,14 @@ open class ContractAPI {
      Update Contract URI
      - PUT /v1/contract/contract-uri
      - Update Contract URI
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter setContractUriDto: (body)  
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter setContractUriInput: (body)  
      - returns: RequestBuilder<Void> 
      */
-    open class func contractControllerSetContractUriWithRequestBuilder(authorization: String, setContractUriDto: SetContractUriDto) -> RequestBuilder<Void> {
+    open class func setContractURIWithRequestBuilder(authorization: String, setContractUriInput: SetContractUriInput) -> RequestBuilder<Void> {
         let localVariablePath = "/v1/contract/contract-uri"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: setContractUriDto)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: setContractUriInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -249,14 +249,14 @@ open class ContractAPI {
     /**
      Update Sale status
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter setSaleStatusDto: (body)  
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter setSaleStatusInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Void>
      */
-    open class func contractControllerSetSaleStatus(authorization: String, setSaleStatusDto: SetSaleStatusDto, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func updateSaleStatus(authorization: String, setSaleStatusInput: SetSaleStatusInput, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
-            let requestTask = contractControllerSetSaleStatusWithRequestBuilder(authorization: authorization, setSaleStatusDto: setSaleStatusDto).execute(apiResponseQueue) { result in
+            let requestTask = updateSaleStatusWithRequestBuilder(authorization: authorization, setSaleStatusInput: setSaleStatusInput).execute(apiResponseQueue) { result in
                 switch result {
                 case .success:
                     observer.onNext(())
@@ -275,14 +275,14 @@ open class ContractAPI {
     /**
      Update Sale status
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter setSaleStatusDto: (body)  
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter setSaleStatusInput: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func contractControllerSetSaleStatus(authorization: String, setSaleStatusDto: SetSaleStatusDto, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, ErrorResponse>) -> Void)) -> RequestTask {
-        return contractControllerSetSaleStatusWithRequestBuilder(authorization: authorization, setSaleStatusDto: setSaleStatusDto).execute(apiResponseQueue) { result in
+    open class func updateSaleStatus(authorization: String, setSaleStatusInput: SetSaleStatusInput, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Void, ErrorResponse>) -> Void)) -> RequestTask {
+        return updateSaleStatusWithRequestBuilder(authorization: authorization, setSaleStatusInput: setSaleStatusInput).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion(.success(()))
@@ -296,14 +296,14 @@ open class ContractAPI {
      Update Sale status
      - PUT /v1/contract/sale-status
      - Update Sale status to PAUSED, PRE_SALE or PUBLIC
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter setSaleStatusDto: (body)  
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter setSaleStatusInput: (body)  
      - returns: RequestBuilder<Void> 
      */
-    open class func contractControllerSetSaleStatusWithRequestBuilder(authorization: String, setSaleStatusDto: SetSaleStatusDto) -> RequestBuilder<Void> {
+    open class func updateSaleStatusWithRequestBuilder(authorization: String, setSaleStatusInput: SetSaleStatusInput) -> RequestBuilder<Void> {
         let localVariablePath = "/v1/contract/sale-status"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: setSaleStatusDto)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: setSaleStatusInput)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 

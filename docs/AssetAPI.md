@@ -4,15 +4,15 @@ All URIs are relative to *https://api-dev.l3vels.xyz*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**countByGame**](AssetAPI.md#countbygame) | **GET** /v1/asset/count/{project_id} | Count assets
-[**getAssetById**](AssetAPI.md#getassetbyid) | **GET** /v1/asset/{project_id}/{id} | Retrieve asset by ID
+[**countByGame**](AssetAPI.md#countbygame) | **GET** /v1/asset/count/{game_id} | Count assets
+[**getAssetById**](AssetAPI.md#getassetbyid) | **GET** /v1/asset/{game_id}/{id} | Retrieve asset by ID
 [**getAssets**](AssetAPI.md#getassets) | **GET** /v1/asset | Retrieve assets
 [**updateAsset**](AssetAPI.md#updateasset) | **PATCH** /v1/asset/{id} | Update asset
 
 
 # **countByGame**
 ```swift
-    open class func countByGame(authorization: String, projectId: String) -> Observable<Double>
+    open class func countByGame(authorization: String, gameId: String) -> Observable<Double>
 ```
 
 Count assets
@@ -24,8 +24,8 @@ Counts total assets in game.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authorization = "authorization_example" // String | API key is associated with multiple projects. Please include it in to use developers API.
-let projectId = "projectId_example" // String | 
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
+let gameId = "gameId_example" // String | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -34,8 +34,8 @@ let projectId = "projectId_example" // String |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String** | API key is associated with multiple projects. Please include it in to use developers API. | 
- **projectId** | **String** |  | 
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
+ **gameId** | **String** |  | 
 
 ### Return type
 
@@ -54,21 +54,21 @@ No authorization required
 
 # **getAssetById**
 ```swift
-    open class func getAssetById(authorization: String, id: String, projectId: String) -> Observable<Asset>
+    open class func getAssetById(authorization: String, id: String, gameId: String) -> Observable<Asset>
 ```
 
 Retrieve asset by ID
 
-Retrieve asset by ID in specific game/project. Example: Find asset AK-47 in game Call of Duty
+Retrieve asset by ID in specific Game. Example: Find asset AK-47 in game Call of Duty
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authorization = "authorization_example" // String | API key is associated with multiple projects. Please include it in to use developers API.
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
 let id = "id_example" // String | Asset ID to find
-let projectId = "projectId_example" // String | Game/project ID to find asset in
+let gameId = "gameId_example" // String | Game ID to find asset in
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -77,9 +77,9 @@ let projectId = "projectId_example" // String | Game/project ID to find asset in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String** | API key is associated with multiple projects. Please include it in to use developers API. | 
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
  **id** | **String** | Asset ID to find | 
- **projectId** | **String** | Game/project ID to find asset in | 
+ **gameId** | **String** | Game ID to find asset in | 
 
 ### Return type
 
@@ -98,7 +98,7 @@ No authorization required
 
 # **getAssets**
 ```swift
-    open class func getAssets(authorization: String, projectId: String, collectionId: String? = nil, sort: String? = nil, order: Order_getAssets? = nil, searchText: String? = nil, limit: Double? = nil, page: Double? = nil) -> Observable<AssetsResponseDto>
+    open class func getAssets(authorization: String, gameId: String, collectionId: String? = nil, sort: String? = nil, order: Order_getAssets? = nil, searchText: String? = nil, limit: Double? = nil, page: Double? = nil) -> Observable<AssetsResponse>
 ```
 
 Retrieve assets
@@ -110,8 +110,8 @@ This API method retrieves a list of assets that match the specified filter crite
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authorization = "authorization_example" // String | API key is associated with multiple projects. Please include it in to use developers API.
-let projectId = "projectId_example" // String | Game/project ID to find assets in your game. Example: Fortnite, Minecraft, etc.
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
+let gameId = "gameId_example" // String | Game ID to find assets in your game. Example: Fortnite, Minecraft, etc.
 let collectionId = "collectionId_example" // String | Filter assets by collection. Example: Get assets only from Weapons collection. (optional)
 let sort = "sort_example" // String | Asset field to sort by. You can sort by name, created_on and etc. (optional)
 let order = "order_example" // String | Sort order (ASC for ascending or DESC for descending) (optional)
@@ -126,8 +126,8 @@ let page = 987 // Double | Page number (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String** | API key is associated with multiple projects. Please include it in to use developers API. | 
- **projectId** | **String** | Game/project ID to find assets in your game. Example: Fortnite, Minecraft, etc. | 
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
+ **gameId** | **String** | Game ID to find assets in your game. Example: Fortnite, Minecraft, etc. | 
  **collectionId** | **String** | Filter assets by collection. Example: Get assets only from Weapons collection. | [optional] 
  **sort** | **String** | Asset field to sort by. You can sort by name, created_on and etc. | [optional] 
  **order** | **String** | Sort order (ASC for ascending or DESC for descending) | [optional] 
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AssetsResponseDto**](AssetsResponseDto.md)
+[**AssetsResponse**](AssetsResponse.md)
 
 ### Authorization
 
@@ -152,7 +152,7 @@ No authorization required
 
 # **updateAsset**
 ```swift
-    open class func updateAsset(authorization: String, id: String, updateAssetDto: UpdateAssetDto) -> Observable<Asset>
+    open class func updateAsset(authorization: String, id: String, updateAssetInput: UpdateAssetInput) -> Observable<Asset>
 ```
 
 Update asset
@@ -164,9 +164,9 @@ Update asset by ID in specific collection. Example: Update asset AK-47 in collec
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authorization = "authorization_example" // String | API key is associated with multiple projects. Please include it in to use developers API.
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
 let id = "id_example" // String | Asset ID to update
-let updateAssetDto = UpdateAssetDto(name: "name_example", description: "description_example", price: 123, supply: 123, assetUrl: "assetUrl_example", customProps: 123, collectionId: "collectionId_example", projectId: "projectId_example") // UpdateAssetDto | 
+let updateAssetInput = UpdateAssetInput(name: "name_example", description: "description_example", price: 123, supply: 123, assetUrl: "assetUrl_example", customProps: 123, collectionId: "collectionId_example", gameId: "gameId_example") // UpdateAssetInput | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -175,9 +175,9 @@ let updateAssetDto = UpdateAssetDto(name: "name_example", description: "descript
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String** | API key is associated with multiple projects. Please include it in to use developers API. | 
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
  **id** | **String** | Asset ID to update | 
- **updateAssetDto** | [**UpdateAssetDto**](UpdateAssetDto.md) |  | 
+ **updateAssetInput** | [**UpdateAssetInput**](UpdateAssetInput.md) |  | 
 
 ### Return type
 

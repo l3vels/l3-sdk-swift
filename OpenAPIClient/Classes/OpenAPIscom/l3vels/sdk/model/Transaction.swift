@@ -47,22 +47,22 @@ public struct Transaction: Codable, JSONEncodable, Hashable {
     public var method: String
     /** List of events that were emitted in the transaction */
     public var events: [String]
-    /** The unique identifier of the project that the transaction is associated with. This allows developers to organize their transactions by project and helps with tracking and reporting. */
-    public var projectId: String
-    /** The unique identifier of the collection that the transaction is associated with. This allows developers to organize their transactions by project and helps with tracking and reporting. */
+    /** The unique identifier of the game that the transaction is associated with. This allows developers to organize their transactions by game and helps with tracking and reporting. */
+    public var gameId: String
+    /** The unique identifier of the collection that the transaction is associated with. This allows developers to organize their transactions by game and helps with tracking and reporting. */
     public var collectionId: String
     /** The unique identifier of the account that the transaction belongs to. */
-    public var accountId: Double
+    public var accountId: String
     /** The date when the collection was created. */
     public var createdOn: Date
     /** The date when the collection was last modified. */
     public var modifiedOn: Date
     /** The Id of the user who created the collection. */
-    public var createdBy: Double
+    public var createdBy: String
     /** The Id of the user who last modified the collection. */
-    public var modifiedBy: Double
+    public var modifiedBy: String
 
-    public init(id: String, status: String, from: String, to: String, contractId: String, contractAddress: String, blockchain: String, chainName: String, chainId: Double, environment: String, transactionHash: String, blockNumber: Double, type: String, method: String, events: [String], projectId: String, collectionId: String, accountId: Double, createdOn: Date, modifiedOn: Date, createdBy: Double, modifiedBy: Double) {
+    public init(id: String, status: String, from: String, to: String, contractId: String, contractAddress: String, blockchain: String, chainName: String, chainId: Double, environment: String, transactionHash: String, blockNumber: Double, type: String, method: String, events: [String], gameId: String, collectionId: String, accountId: String, createdOn: Date, modifiedOn: Date, createdBy: String, modifiedBy: String) {
         self.id = id
         self.status = status
         self.from = from
@@ -78,7 +78,7 @@ public struct Transaction: Codable, JSONEncodable, Hashable {
         self.type = type
         self.method = method
         self.events = events
-        self.projectId = projectId
+        self.gameId = gameId
         self.collectionId = collectionId
         self.accountId = accountId
         self.createdOn = createdOn
@@ -103,7 +103,7 @@ public struct Transaction: Codable, JSONEncodable, Hashable {
         case type
         case method
         case events
-        case projectId = "project_id"
+        case gameId = "game_id"
         case collectionId = "collection_id"
         case accountId = "account_id"
         case createdOn = "created_on"
@@ -131,7 +131,7 @@ public struct Transaction: Codable, JSONEncodable, Hashable {
         try container.encode(type, forKey: .type)
         try container.encode(method, forKey: .method)
         try container.encode(events, forKey: .events)
-        try container.encode(projectId, forKey: .projectId)
+        try container.encode(gameId, forKey: .gameId)
         try container.encode(collectionId, forKey: .collectionId)
         try container.encode(accountId, forKey: .accountId)
         try container.encode(createdOn, forKey: .createdOn)

@@ -48,21 +48,21 @@ public struct Asset: Codable, JSONEncodable, Hashable {
     /** The main or featured image associated with the asset. You can set it from the Dashboard as main image. */
     public var mainMedia: String
     /** The unique identifier of the account that the Collection belongs to. */
-    public var accountId: Double
-    /** The unique identifier of the project that the asset is associated with. This allows developers to organize their assets by project and helps with tracking and reporting. */
-    public var projectId: String
-    /** The unique identifier of the collection that the asset is associated with. This allows developers to organize their collections by project and helps with tracking and reporting. */
+    public var accountId: String
+    /** The unique identifier of the game that the asset is associated with. This allows developers to organize their assets by game and helps with tracking and reporting. */
+    public var gameId: String
+    /** The unique identifier of the collection that the asset is associated with. This allows developers to organize their collections by game and helps with tracking and reporting. */
     public var collectionId: String
     /** The date when the collection was created. */
     public var createdOn: Date
     /** The date when the collection was last modified. */
     public var modifiedOn: Date
     /** The Id of the user who created the collection. */
-    public var createdBy: Double
+    public var createdBy: String
     /** The Id of the user who last modified the collection. */
-    public var modifiedBy: Double
+    public var modifiedBy: String
 
-    public init(id: String, tokenId: Double, name: String, parentId: String, properties: AnyCodable, attributes: AnyCodable, description: String, status: String, price: Double, supply: Double, mintedAmount: Double, assetType: String, assetUrl: String, medias: [String], mainMedia: String, accountId: Double, projectId: String, collectionId: String, createdOn: Date, modifiedOn: Date, createdBy: Double, modifiedBy: Double) {
+    public init(id: String, tokenId: Double, name: String, parentId: String, properties: AnyCodable, attributes: AnyCodable, description: String, status: String, price: Double, supply: Double, mintedAmount: Double, assetType: String, assetUrl: String, medias: [String], mainMedia: String, accountId: String, gameId: String, collectionId: String, createdOn: Date, modifiedOn: Date, createdBy: String, modifiedBy: String) {
         self.id = id
         self.tokenId = tokenId
         self.name = name
@@ -79,7 +79,7 @@ public struct Asset: Codable, JSONEncodable, Hashable {
         self.medias = medias
         self.mainMedia = mainMedia
         self.accountId = accountId
-        self.projectId = projectId
+        self.gameId = gameId
         self.collectionId = collectionId
         self.createdOn = createdOn
         self.modifiedOn = modifiedOn
@@ -104,7 +104,7 @@ public struct Asset: Codable, JSONEncodable, Hashable {
         case medias
         case mainMedia = "main_media"
         case accountId = "account_id"
-        case projectId = "project_id"
+        case gameId = "game_id"
         case collectionId = "collection_id"
         case createdOn = "created_on"
         case modifiedOn = "modified_on"
@@ -132,7 +132,7 @@ public struct Asset: Codable, JSONEncodable, Hashable {
         try container.encode(medias, forKey: .medias)
         try container.encode(mainMedia, forKey: .mainMedia)
         try container.encode(accountId, forKey: .accountId)
-        try container.encode(projectId, forKey: .projectId)
+        try container.encode(gameId, forKey: .gameId)
         try container.encode(collectionId, forKey: .collectionId)
         try container.encode(createdOn, forKey: .createdOn)
         try container.encode(modifiedOn, forKey: .modifiedOn)

@@ -4,29 +4,29 @@ All URIs are relative to *https://api-dev.l3vels.xyz*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**contractControllerCollectionSize**](ContractAPI.md#contractcontrollercollectionsize) | **GET** /v1/contract/collection-size | Collection size
-[**contractControllerContractUri**](ContractAPI.md#contractcontrollercontracturi) | **GET** /v1/contract/contract-uri | Get Contract URI
-[**contractControllerSetContractUri**](ContractAPI.md#contractcontrollersetcontracturi) | **PUT** /v1/contract/contract-uri | Update Contract URI
-[**contractControllerSetSaleStatus**](ContractAPI.md#contractcontrollersetsalestatus) | **PUT** /v1/contract/sale-status | Update Sale status
+[**countContractsByGameId**](ContractAPI.md#countcontractsbygameid) | **GET** /v1/contract/collection-size | Collection size
+[**getContractURI**](ContractAPI.md#getcontracturi) | **GET** /v1/contract/contract-uri | Get Contract URI
+[**setContractURI**](ContractAPI.md#setcontracturi) | **PUT** /v1/contract/contract-uri | Update Contract URI
+[**updateSaleStatus**](ContractAPI.md#updatesalestatus) | **PUT** /v1/contract/sale-status | Update Sale status
 
 
-# **contractControllerCollectionSize**
+# **countContractsByGameId**
 ```swift
-    open class func contractControllerCollectionSize(authorization: String, collectionId: String, projectId: String) -> Observable<Void>
+    open class func countContractsByGameId(authorization: String, collectionId: String, gameId: String) -> Observable<Void>
 ```
 
 Collection size
 
-Get size of collection
+Count total contract in game.
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authorization = "authorization_example" // String | API key is associated with multiple projects. Please include it in to use developers API.
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
 let collectionId = "collectionId_example" // String | 
-let projectId = "projectId_example" // String | 
+let gameId = "gameId_example" // String | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -35,9 +35,9 @@ let projectId = "projectId_example" // String |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String** | API key is associated with multiple projects. Please include it in to use developers API. | 
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
  **collectionId** | **String** |  | 
- **projectId** | **String** |  | 
+ **gameId** | **String** |  | 
 
 ### Return type
 
@@ -54,9 +54,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **contractControllerContractUri**
+# **getContractURI**
 ```swift
-    open class func contractControllerContractUri(authorization: String, collectionId: String, projectId: String) -> Observable<Void>
+    open class func getContractURI(authorization: String, collectionId: String, gameId: String) -> Observable<Void>
 ```
 
 Get Contract URI
@@ -68,9 +68,9 @@ Gets contract uri of contract
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authorization = "authorization_example" // String | API key is associated with multiple projects. Please include it in to use developers API.
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
 let collectionId = "collectionId_example" // String | 
-let projectId = "projectId_example" // String | 
+let gameId = "gameId_example" // String | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -79,9 +79,9 @@ let projectId = "projectId_example" // String |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String** | API key is associated with multiple projects. Please include it in to use developers API. | 
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
  **collectionId** | **String** |  | 
- **projectId** | **String** |  | 
+ **gameId** | **String** |  | 
 
 ### Return type
 
@@ -98,9 +98,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **contractControllerSetContractUri**
+# **setContractURI**
 ```swift
-    open class func contractControllerSetContractUri(authorization: String, setContractUriDto: SetContractUriDto) -> Observable<Void>
+    open class func setContractURI(authorization: String, setContractUriInput: SetContractUriInput) -> Observable<Void>
 ```
 
 Update Contract URI
@@ -112,8 +112,8 @@ Update Contract URI
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authorization = "authorization_example" // String | API key is associated with multiple projects. Please include it in to use developers API.
-let setContractUriDto = SetContractUriDto(projectId: "projectId_example", collectionId: "collectionId_example", contractUri: "contractUri_example") // SetContractUriDto | 
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
+let setContractUriInput = SetContractUriInput(gameId: "gameId_example", collectionId: "collectionId_example", contractUri: "contractUri_example") // SetContractUriInput | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -122,8 +122,8 @@ let setContractUriDto = SetContractUriDto(projectId: "projectId_example", collec
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String** | API key is associated with multiple projects. Please include it in to use developers API. | 
- **setContractUriDto** | [**SetContractUriDto**](SetContractUriDto.md) |  | 
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
+ **setContractUriInput** | [**SetContractUriInput**](SetContractUriInput.md) |  | 
 
 ### Return type
 
@@ -140,9 +140,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **contractControllerSetSaleStatus**
+# **updateSaleStatus**
 ```swift
-    open class func contractControllerSetSaleStatus(authorization: String, setSaleStatusDto: SetSaleStatusDto) -> Observable<Void>
+    open class func updateSaleStatus(authorization: String, setSaleStatusInput: SetSaleStatusInput) -> Observable<Void>
 ```
 
 Update Sale status
@@ -154,8 +154,8 @@ Update Sale status to PAUSED, PRE_SALE or PUBLIC
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authorization = "authorization_example" // String | API key is associated with multiple projects. Please include it in to use developers API.
-let setSaleStatusDto = SetSaleStatusDto(projectId: "projectId_example", collectionId: "collectionId_example", saleStatus: 123) // SetSaleStatusDto | 
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
+let setSaleStatusInput = SetSaleStatusInput(gameId: "gameId_example", collectionId: "collectionId_example", saleStatus: 123) // SetSaleStatusInput | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -164,8 +164,8 @@ let setSaleStatusDto = SetSaleStatusDto(projectId: "projectId_example", collecti
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String** | API key is associated with multiple projects. Please include it in to use developers API. | 
- **setSaleStatusDto** | [**SetSaleStatusDto**](SetSaleStatusDto.md) |  | 
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
+ **setSaleStatusInput** | [**SetSaleStatusInput**](SetSaleStatusInput.md) |  | 
 
 ### Return type
 

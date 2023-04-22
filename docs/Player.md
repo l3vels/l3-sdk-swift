@@ -11,12 +11,12 @@ Name | Type | Description | Notes
 **avatar** | **String** | Avatar URL of the player | 
 **customProps** | **AnyCodable** | Custom props for player | 
 **lastSeen** | **Date** | The date when player was active last time | 
-**accountId** | **Double** | The unique identifier of the account that the Player belongs to. | 
-**projectId** | **String** | The unique identifier of the project that the Player is associated with. This allows developers to organize their players by project and helps with tracking and reporting. Example: Player Jack is associated with project Fortnite. | 
+**accountId** | **String** | The unique identifier of the account that the Player belongs to. | 
+**gameId** | **String** | The unique identifier of the game that the Player is associated with. This allows developers to organize their players by game and helps with tracking and reporting. Example: Player Jack is associated with game Fortnite. | 
 **createdOn** | **Date** | The date when the player was created. | 
 **modifiedOn** | **Date** | The date when the player was last modified. | 
-**createdBy** | **Double** | The Id of the user who created the player. | 
-**modifiedBy** | **Double** | The Id of the user who last modified the player. | 
+**createdBy** | **String** | The Id of the user who created the player. | 
+**modifiedBy** | **String** | The Id of the user who last modified the player. | 
 **isCreateWallet** | **Bool** | Boolean value indicating whether the player has wallet or not | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

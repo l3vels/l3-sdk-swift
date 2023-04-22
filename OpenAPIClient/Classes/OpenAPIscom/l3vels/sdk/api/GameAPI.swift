@@ -19,12 +19,12 @@ open class GameAPI {
     /**
      Retrieve Game
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter id: (path) Game or Project Id 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter id: (path) Game or Game Id 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Observable<Project>
+     - returns: Observable<Game>
      */
-    open class func getGameById(authorization: String, id: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Project> {
+    open class func getGameById(authorization: String, id: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Game> {
         return Observable.create { observer -> Disposable in
             let requestTask = getGameByIdWithRequestBuilder(authorization: authorization, id: id).execute(apiResponseQueue) { result in
                 switch result {
@@ -45,13 +45,13 @@ open class GameAPI {
     /**
      Retrieve Game
      
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter id: (path) Game or Project Id 
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter id: (path) Game or Game Id 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getGameById(authorization: String, id: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Project, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func getGameById(authorization: String, id: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Game, ErrorResponse>) -> Void)) -> RequestTask {
         return getGameByIdWithRequestBuilder(authorization: authorization, id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -65,12 +65,12 @@ open class GameAPI {
     /**
      Retrieve Game
      - GET /v1/game/{id}
-     - Get game/project by ID created on the platform.
-     - parameter authorization: (header) API key is associated with multiple projects. Please include it in to use developers API. 
-     - parameter id: (path) Game or Project Id 
-     - returns: RequestBuilder<Project> 
+     - Get Game by ID created on the platform.
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter id: (path) Game or Game Id 
+     - returns: RequestBuilder<Game> 
      */
-    open class func getGameByIdWithRequestBuilder(authorization: String, id: String) -> RequestBuilder<Project> {
+    open class func getGameByIdWithRequestBuilder(authorization: String, id: String) -> RequestBuilder<Game> {
         var localVariablePath = "/v1/game/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -86,7 +86,7 @@ open class GameAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Project>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Game>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }

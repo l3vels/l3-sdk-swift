@@ -18,13 +18,13 @@ Name | Type | Description | Notes
 **type** | **String** | Transaction type: Mint, Transfer, Award, Airdrop, etc. | 
 **method** | **String** | Function method name that was called in smart contract | 
 **events** | **[String]** | List of events that were emitted in the transaction | 
-**projectId** | **String** | The unique identifier of the project that the transaction is associated with. This allows developers to organize their transactions by project and helps with tracking and reporting. | 
-**collectionId** | **String** | The unique identifier of the collection that the transaction is associated with. This allows developers to organize their transactions by project and helps with tracking and reporting. | 
-**accountId** | **Double** | The unique identifier of the account that the transaction belongs to. | 
+**gameId** | **String** | The unique identifier of the game that the transaction is associated with. This allows developers to organize their transactions by game and helps with tracking and reporting. | 
+**collectionId** | **String** | The unique identifier of the collection that the transaction is associated with. This allows developers to organize their transactions by game and helps with tracking and reporting. | 
+**accountId** | **String** | The unique identifier of the account that the transaction belongs to. | 
 **createdOn** | **Date** | The date when the collection was created. | 
 **modifiedOn** | **Date** | The date when the collection was last modified. | 
-**createdBy** | **Double** | The Id of the user who created the collection. | 
-**modifiedBy** | **Double** | The Id of the user who last modified the collection. | 
+**createdBy** | **String** | The Id of the user who created the collection. | 
+**modifiedBy** | **String** | The Id of the user who last modified the collection. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

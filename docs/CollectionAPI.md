@@ -4,14 +4,14 @@ All URIs are relative to *https://api-dev.l3vels.xyz*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**countCollectionsByGameId**](CollectionAPI.md#countcollectionsbygameid) | **GET** /v1/collection/count/{project_id} | Count collections
-[**getCollectionById**](CollectionAPI.md#getcollectionbyid) | **GET** /v1/collection/{project_id}/{id} | Retrieve collection by ID
+[**countCollectionsByGameId**](CollectionAPI.md#countcollectionsbygameid) | **GET** /v1/collection/count/{game_id} | Count collections
+[**getCollectionById**](CollectionAPI.md#getcollectionbyid) | **GET** /v1/collection/{game_id}/{id} | Retrieve collection by ID
 [**getCollections**](CollectionAPI.md#getcollections) | **GET** /v1/collection | Retrieve collections
 
 
 # **countCollectionsByGameId**
 ```swift
-    open class func countCollectionsByGameId(authorization: String, projectId: String) -> Observable<Double>
+    open class func countCollectionsByGameId(authorization: String, gameId: String) -> Observable<Double>
 ```
 
 Count collections
@@ -23,8 +23,8 @@ Count total collections in game.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authorization = "authorization_example" // String | API key is associated with multiple projects. Please include it in to use developers API.
-let projectId = "projectId_example" // String | Game/project ID to count collections in
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
+let gameId = "gameId_example" // String | Game ID to count collections in
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -33,8 +33,8 @@ let projectId = "projectId_example" // String | Game/project ID to count collect
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String** | API key is associated with multiple projects. Please include it in to use developers API. | 
- **projectId** | **String** | Game/project ID to count collections in | 
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
+ **gameId** | **String** | Game ID to count collections in | 
 
 ### Return type
 
@@ -53,7 +53,7 @@ No authorization required
 
 # **getCollectionById**
 ```swift
-    open class func getCollectionById(authorization: String, id: String, projectId: String) -> Observable<Collection>
+    open class func getCollectionById(authorization: String, id: String, gameId: String) -> Observable<Collection>
 ```
 
 Retrieve collection by ID
@@ -65,9 +65,9 @@ This API method retrieves a specific collection based on the unique identifier p
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authorization = "authorization_example" // String | API key is associated with multiple projects. Please include it in to use developers API.
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
 let id = "id_example" // String | Collection ID to find
-let projectId = "projectId_example" // String | Game/project ID to find collection in
+let gameId = "gameId_example" // String | Game ID to find collection in
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -76,9 +76,9 @@ let projectId = "projectId_example" // String | Game/project ID to find collecti
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String** | API key is associated with multiple projects. Please include it in to use developers API. | 
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
  **id** | **String** | Collection ID to find | 
- **projectId** | **String** | Game/project ID to find collection in | 
+ **gameId** | **String** | Game ID to find collection in | 
 
 ### Return type
 
@@ -97,7 +97,7 @@ No authorization required
 
 # **getCollections**
 ```swift
-    open class func getCollections(authorization: String, projectId: String, sort: String? = nil, order: String? = nil, searchText: String? = nil, limit: Double? = nil, page: Double? = nil) -> Observable<[Collection]>
+    open class func getCollections(authorization: String, gameId: String, sort: String? = nil, order: String? = nil, searchText: String? = nil, limit: Double? = nil, page: Double? = nil) -> Observable<[Collection]>
 ```
 
 Retrieve collections
@@ -109,8 +109,8 @@ This API method retrieves a list of collections that match the specified filter 
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authorization = "authorization_example" // String | API key is associated with multiple projects. Please include it in to use developers API.
-let projectId = "projectId_example" // String | Game/project ID to find collections in your game. Example: Fortnite, Minecraft, etc.
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
+let gameId = "gameId_example" // String | Game ID to find collections in your game. Example: Fortnite, Minecraft, etc.
 let sort = "sort_example" // String | Collection field to sort by. You can sort by name, created_on and etc. (optional)
 let order = "order_example" // String | Sort order (ASC for ascending or DESC for descending) (optional)
 let searchText = "searchText_example" // String | Search collections by name (optional)
@@ -124,8 +124,8 @@ let page = 987 // Double | Page number (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorization** | **String** | API key is associated with multiple projects. Please include it in to use developers API. | 
- **projectId** | **String** | Game/project ID to find collections in your game. Example: Fortnite, Minecraft, etc. | 
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
+ **gameId** | **String** | Game ID to find collections in your game. Example: Fortnite, Minecraft, etc. | 
  **sort** | **String** | Collection field to sort by. You can sort by name, created_on and etc. | [optional] 
  **order** | **String** | Sort order (ASC for ascending or DESC for descending) | [optional] 
  **searchText** | **String** | Search collections by name | [optional] 
