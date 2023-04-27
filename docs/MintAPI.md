@@ -27,7 +27,7 @@ Airdrop asset to player
 import OpenAPIClient
 
 let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
-let mintInput = MintInput(contractId: "contractId_example", gameId: "gameId_example", collectionId: "collectionId_example", playerAddress: "playerAddress_example", playerId: "playerId_example", asset: MintInput_asset(tokenId: 123, assetId: "assetId_example", amount: 123)) // MintInput | 
+let mintInput = MintInput(gameId: "gameId_example", collectionId: "collectionId_example", playerAddress: "playerAddress_example", playerId: "playerId_example", asset: MintInput_asset(tokenId: 123, assetId: "assetId_example", amount: 123)) // MintInput | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -69,7 +69,7 @@ Award asset to player
 import OpenAPIClient
 
 let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
-let mintInput = MintInput(contractId: "contractId_example", gameId: "gameId_example", collectionId: "collectionId_example", playerAddress: "playerAddress_example", playerId: "playerId_example", asset: MintInput_asset(tokenId: 123, assetId: "assetId_example", amount: 123)) // MintInput | 
+let mintInput = MintInput(gameId: "gameId_example", collectionId: "collectionId_example", playerAddress: "playerAddress_example", playerId: "playerId_example", asset: MintInput_asset(tokenId: 123, assetId: "assetId_example", amount: 123)) // MintInput | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -153,7 +153,7 @@ Mint an asset by admin to player
 import OpenAPIClient
 
 let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
-let mintInput = MintInput(contractId: "contractId_example", gameId: "gameId_example", collectionId: "collectionId_example", playerAddress: "playerAddress_example", playerId: "playerId_example", asset: MintInput_asset(tokenId: 123, assetId: "assetId_example", amount: 123)) // MintInput | 
+let mintInput = MintInput(gameId: "gameId_example", collectionId: "collectionId_example", playerAddress: "playerAddress_example", playerId: "playerId_example", asset: MintInput_asset(tokenId: 123, assetId: "assetId_example", amount: 123)) // MintInput | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -195,7 +195,7 @@ Mint asset by player. Player must have enough balance to mint.
 import OpenAPIClient
 
 let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
-let mintInput = MintInput(contractId: "contractId_example", gameId: "gameId_example", collectionId: "collectionId_example", playerAddress: "playerAddress_example", playerId: "playerId_example", asset: MintInput_asset(tokenId: 123, assetId: "assetId_example", amount: 123)) // MintInput | 
+let mintInput = MintInput(gameId: "gameId_example", collectionId: "collectionId_example", playerAddress: "playerAddress_example", playerId: "playerId_example", asset: MintInput_asset(tokenId: 123, assetId: "assetId_example", amount: 123)) // MintInput | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```

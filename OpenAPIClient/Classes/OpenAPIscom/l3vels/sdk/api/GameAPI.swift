@@ -20,13 +20,13 @@ open class GameAPI {
      Retrieve Game
      
      - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
-     - parameter id: (path) Game or Game Id 
+     - parameter gameId: (path) Game ID 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Game>
      */
-    open class func getGameById(authorization: String, id: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Game> {
+    open class func getGameById(authorization: String, gameId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Game> {
         return Observable.create { observer -> Disposable in
-            let requestTask = getGameByIdWithRequestBuilder(authorization: authorization, id: id).execute(apiResponseQueue) { result in
+            let requestTask = getGameByIdWithRequestBuilder(authorization: authorization, gameId: gameId).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body)
@@ -46,13 +46,13 @@ open class GameAPI {
      Retrieve Game
      
      - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
-     - parameter id: (path) Game or Game Id 
+     - parameter gameId: (path) Game ID 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getGameById(authorization: String, id: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Game, ErrorResponse>) -> Void)) -> RequestTask {
-        return getGameByIdWithRequestBuilder(authorization: authorization, id: id).execute(apiResponseQueue) { result in
+    open class func getGameById(authorization: String, gameId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Game, ErrorResponse>) -> Void)) -> RequestTask {
+        return getGameByIdWithRequestBuilder(authorization: authorization, gameId: gameId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -64,17 +64,17 @@ open class GameAPI {
 
     /**
      Retrieve Game
-     - GET /v1/game/{id}
+     - GET /v1/game/{game_id}
      - Get Game by ID created on the platform.
      - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
-     - parameter id: (path) Game or Game Id 
+     - parameter gameId: (path) Game ID 
      - returns: RequestBuilder<Game> 
      */
-    open class func getGameByIdWithRequestBuilder(authorization: String, id: String) -> RequestBuilder<Game> {
-        var localVariablePath = "/v1/game/{id}"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+    open class func getGameByIdWithRequestBuilder(authorization: String, gameId: String) -> RequestBuilder<Game> {
+        var localVariablePath = "/v1/game/{game_id}"
+        let gameIdPreEscape = "\(APIHelper.mapValueToPathItem(gameId))"
+        let gameIdPostEscape = gameIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{game_id}", with: gameIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 

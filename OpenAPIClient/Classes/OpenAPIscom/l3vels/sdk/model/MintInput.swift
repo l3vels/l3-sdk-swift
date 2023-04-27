@@ -17,8 +17,6 @@ extension OpenAPIClientAPI {
 
 public struct MintInput: Codable, JSONEncodable, Hashable {
 
-    /** Contract ID */
-    public var contractId: String?
     /** Game ID. Example: Call of Duty */
     public var gameId: String
     /** Collection ID to use. Example: Characters, Weapons, etc. */
@@ -29,8 +27,7 @@ public struct MintInput: Codable, JSONEncodable, Hashable {
     public var playerId: String?
     public var asset: MintInputAsset
 
-    public init(contractId: String? = nil, gameId: String, collectionId: String, playerAddress: String? = nil, playerId: String? = nil, asset: MintInputAsset) {
-        self.contractId = contractId
+    public init(gameId: String, collectionId: String, playerAddress: String? = nil, playerId: String? = nil, asset: MintInputAsset) {
         self.gameId = gameId
         self.collectionId = collectionId
         self.playerAddress = playerAddress
@@ -39,7 +36,6 @@ public struct MintInput: Codable, JSONEncodable, Hashable {
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case contractId = "contract_id"
         case gameId = "game_id"
         case collectionId = "collection_id"
         case playerAddress = "player_address"
@@ -51,7 +47,6 @@ public struct MintInput: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(contractId, forKey: .contractId)
         try container.encode(gameId, forKey: .gameId)
         try container.encode(collectionId, forKey: .collectionId)
         try container.encodeIfPresent(playerAddress, forKey: .playerAddress)

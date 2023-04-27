@@ -37,7 +37,7 @@ Class | Method | HTTP request | Description
 *ContractAPI* | [**getContractURI**](docs/ContractAPI.md#getcontracturi) | **GET** /v1/contract/contract-uri | Get Contract URI
 *ContractAPI* | [**setContractURI**](docs/ContractAPI.md#setcontracturi) | **PUT** /v1/contract/contract-uri | Update Contract URI
 *ContractAPI* | [**updateSaleStatus**](docs/ContractAPI.md#updatesalestatus) | **PUT** /v1/contract/sale-status | Update Sale status
-*GameAPI* | [**getGameById**](docs/GameAPI.md#getgamebyid) | **GET** /v1/game/{id} | Retrieve Game
+*GameAPI* | [**getGameById**](docs/GameAPI.md#getgamebyid) | **GET** /v1/game/{game_id} | Retrieve Game
 *MintAPI* | [**airdropAssetToPlayer**](docs/MintAPI.md#airdropassettoplayer) | **POST** /v1/mint/airdrop | Airdrop asset to player
 *MintAPI* | [**awardAssetToPlayer**](docs/MintAPI.md#awardassettoplayer) | **POST** /v1/mint/award | Award asset to player
 *MintAPI* | [**batchMintAssetByPlayer**](docs/MintAPI.md#batchmintassetbyplayer) | **POST** /v1/mint/batch-player | Batch mint assets by player

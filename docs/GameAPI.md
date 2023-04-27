@@ -4,12 +4,12 @@ All URIs are relative to *https://api-dev.l3vels.xyz*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getGameById**](GameAPI.md#getgamebyid) | **GET** /v1/game/{id} | Retrieve Game
+[**getGameById**](GameAPI.md#getgamebyid) | **GET** /v1/game/{game_id} | Retrieve Game
 
 
 # **getGameById**
 ```swift
-    open class func getGameById(authorization: String, id: String) -> Observable<Game>
+    open class func getGameById(authorization: String, gameId: String) -> Observable<Game>
 ```
 
 Retrieve Game
@@ -22,7 +22,7 @@ Get Game by ID created on the platform.
 import OpenAPIClient
 
 let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
-let id = "id_example" // String | Game or Game Id
+let gameId = "gameId_example" // String | Game ID
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -32,7 +32,7 @@ let id = "id_example" // String | Game or Game Id
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
- **id** | **String** | Game or Game Id | 
+ **gameId** | **String** | Game ID | 
 
 ### Return type
 
