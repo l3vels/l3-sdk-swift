@@ -26,9 +26,13 @@ public struct Asset: Codable, JSONEncodable, Hashable {
     /** ID of the parent asset. */
     public var parentId: String
     /** Custom properties of the asset. */
-    public var properties: AnyCodable
+    public var properties: String
     /** Custom attributes of the asset. */
     public var attributes: AnyCodable
+    /** Achievements of the asset. */
+    public var achievements: [String]
+    /** Rewards of the asset. */
+    public var rewards: [String]
     /** The description of the asset. */
     public var description: String
     /** The status of the asset. */
@@ -62,13 +66,15 @@ public struct Asset: Codable, JSONEncodable, Hashable {
     /** The Id of the user who last modified the collection. */
     public var modifiedBy: String
 
-    public init(id: String, tokenId: Double, name: String, parentId: String, properties: AnyCodable, attributes: AnyCodable, description: String, status: String, price: Double, supply: Double, mintedAmount: Double, assetType: String, assetUrl: String, medias: [String], mainMedia: String, accountId: String, gameId: String, collectionId: String, createdOn: Date, modifiedOn: Date, createdBy: String, modifiedBy: String) {
+    public init(id: String, tokenId: Double, name: String, parentId: String, properties: String, attributes: AnyCodable, achievements: [String], rewards: [String], description: String, status: String, price: Double, supply: Double, mintedAmount: Double, assetType: String, assetUrl: String, medias: [String], mainMedia: String, accountId: String, gameId: String, collectionId: String, createdOn: Date, modifiedOn: Date, createdBy: String, modifiedBy: String) {
         self.id = id
         self.tokenId = tokenId
         self.name = name
         self.parentId = parentId
         self.properties = properties
         self.attributes = attributes
+        self.achievements = achievements
+        self.rewards = rewards
         self.description = description
         self.status = status
         self.price = price
@@ -94,6 +100,8 @@ public struct Asset: Codable, JSONEncodable, Hashable {
         case parentId = "parent_id"
         case properties
         case attributes
+        case achievements
+        case rewards
         case description
         case status
         case price
@@ -122,6 +130,8 @@ public struct Asset: Codable, JSONEncodable, Hashable {
         try container.encode(parentId, forKey: .parentId)
         try container.encode(properties, forKey: .properties)
         try container.encode(attributes, forKey: .attributes)
+        try container.encode(achievements, forKey: .achievements)
+        try container.encode(rewards, forKey: .rewards)
         try container.encode(description, forKey: .description)
         try container.encode(status, forKey: .status)
         try container.encode(price, forKey: .price)

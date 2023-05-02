@@ -7,8 +7,10 @@ Name | Type | Description | Notes
 **tokenId** | **Double** | The token id of the asset. | 
 **name** | **String** | The name of the asset. | 
 **parentId** | **String** | ID of the parent asset. | 
-**properties** | **AnyCodable** | Custom properties of the asset. | 
+**properties** | **String** | Custom properties of the asset. | 
 **attributes** | **AnyCodable** | Custom attributes of the asset. | 
+**achievements** | **[String]** | Achievements of the asset. | 
+**rewards** | **[String]** | Rewards of the asset. | 
 **description** | **String** | The description of the asset. | 
 **status** | **String** | The status of the asset. | 
 **price** | **Double** | The price of the asset. | 
