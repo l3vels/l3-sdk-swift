@@ -26,7 +26,7 @@ public struct Asset: Codable, JSONEncodable, Hashable {
     /** ID of the parent asset. */
     public var parentId: String
     /** Custom properties of the asset. */
-    public var properties: String
+    public var properties: [String]
     /** Custom attributes of the asset. */
     public var attributes: AnyCodable
     /** Achievements of the asset. */
@@ -66,7 +66,7 @@ public struct Asset: Codable, JSONEncodable, Hashable {
     /** The Id of the user who last modified the collection. */
     public var modifiedBy: String
 
-    public init(id: String, tokenId: Double, name: String, parentId: String, properties: String, attributes: AnyCodable, achievements: [String], rewards: [String], description: String, status: String, price: Double, supply: Double, mintedAmount: Double, assetType: String, assetUrl: String, medias: [String], mainMedia: String, accountId: String, gameId: String, collectionId: String, createdOn: Date, modifiedOn: Date, createdBy: String, modifiedBy: String) {
+    public init(id: String, tokenId: Double, name: String, parentId: String, properties: [String], attributes: AnyCodable, achievements: [String], rewards: [String], description: String, status: String, price: Double, supply: Double, mintedAmount: Double, assetType: String, assetUrl: String, medias: [String], mainMedia: String, accountId: String, gameId: String, collectionId: String, createdOn: Date, modifiedOn: Date, createdBy: String, modifiedBy: String) {
         self.id = id
         self.tokenId = tokenId
         self.name = name
