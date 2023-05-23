@@ -17,6 +17,7 @@ OpenAPIClient/Classes/OpenAPIs/Validation.swift
 OpenAPIClient/Classes/OpenAPIscom/l3vels/sdk/api/AssetAPI.swift
 OpenAPIClient/Classes/OpenAPIscom/l3vels/sdk/api/CollectionAPI.swift
 OpenAPIClient/Classes/OpenAPIscom/l3vels/sdk/api/ContractAPI.swift
+OpenAPIClient/Classes/OpenAPIscom/l3vels/sdk/api/DefaultAPI.swift
 OpenAPIClient/Classes/OpenAPIscom/l3vels/sdk/api/GameAPI.swift
 OpenAPIClient/Classes/OpenAPIscom/l3vels/sdk/api/MintAPI.swift
 OpenAPIClient/Classes/OpenAPIscom/l3vels/sdk/api/PlayerAPI.swift
@@ -46,6 +47,7 @@ docs/Collection.md
 docs/CollectionAPI.md
 docs/ContractAPI.md
 docs/CreatePlayerInput.md
+docs/DefaultAPI.md
 docs/Game.md
 docs/GameAPI.md
 docs/MintAPI.md
