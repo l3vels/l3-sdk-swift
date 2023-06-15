@@ -17,6 +17,78 @@ extension OpenAPIClientAPI {
 open class CollectionAPI {
 
     /**
+     Create a new collection inside specific game
+     
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter body: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - returns: Observable<Collection>
+     */
+    open class func collectionControllerCreateCollection(authorization: String, body: AnyCodable, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Collection> {
+        return Observable.create { observer -> Disposable in
+            let requestTask = collectionControllerCreateCollectionWithRequestBuilder(authorization: authorization, body: body).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    observer.onNext(response.body)
+                case let .failure(error):
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            
+            return Disposables.create {
+                requestTask.cancel()
+            }
+        }
+    }
+
+    /**
+     Create a new collection inside specific game
+     
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter body: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func collectionControllerCreateCollection(authorization: String, body: AnyCodable, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Collection, ErrorResponse>) -> Void)) -> RequestTask {
+        return collectionControllerCreateCollectionWithRequestBuilder(authorization: authorization, body: body).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create a new collection inside specific game
+     - POST /v1/collection
+     - This API method creates collection in a specified game
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter body: (body)  
+     - returns: RequestBuilder<Collection> 
+     */
+    open class func collectionControllerCreateCollectionWithRequestBuilder(authorization: String, body: AnyCodable) -> RequestBuilder<Collection> {
+        let localVariablePath = "/v1/collection"
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Authorization": authorization.encodeToJSON(),
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<Collection>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
+    }
+
+    /**
      Count collections
      
      - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 

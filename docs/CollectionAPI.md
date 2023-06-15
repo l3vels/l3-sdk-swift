@@ -4,10 +4,53 @@ All URIs are relative to *https://api-dev.l3vels.xyz*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**collectionControllerCreateCollection**](CollectionAPI.md#collectioncontrollercreatecollection) | **POST** /v1/collection | Create a new collection inside specific game
 [**countCollectionsByGameId**](CollectionAPI.md#countcollectionsbygameid) | **GET** /v1/collection/count/{game_id} | Count collections
 [**getCollectionById**](CollectionAPI.md#getcollectionbyid) | **GET** /v1/collection/{game_id}/{id} | Retrieve collection by ID
 [**getCollections**](CollectionAPI.md#getcollections) | **GET** /v1/collection | Retrieve collections
 
+
+# **collectionControllerCreateCollection**
+```swift
+    open class func collectionControllerCreateCollection(authorization: String, body: AnyCodable) -> Observable<Collection>
+```
+
+Create a new collection inside specific game
+
+This API method creates collection in a specified game
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
+let body = "TODO" // AnyCodable | 
+
+// TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
+ **body** | **AnyCodable** |  | 
+
+### Return type
+
+[**Collection**](Collection.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **countCollectionsByGameId**
 ```swift

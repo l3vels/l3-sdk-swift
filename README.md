@@ -30,6 +30,7 @@ Class | Method | HTTP request | Description
 *AssetAPI* | [**getAssetById**](docs/AssetAPI.md#getassetbyid) | **GET** /v1/asset/{game_id}/{id} | Retrieve asset by ID
 *AssetAPI* | [**getAssets**](docs/AssetAPI.md#getassets) | **GET** /v1/asset | Retrieve assets
 *AssetAPI* | [**updateAsset**](docs/AssetAPI.md#updateasset) | **PATCH** /v1/asset/{id} | Update asset
+*CollectionAPI* | [**collectionControllerCreateCollection**](docs/CollectionAPI.md#collectioncontrollercreatecollection) | **POST** /v1/collection | Create a new collection inside specific game
 *CollectionAPI* | [**countCollectionsByGameId**](docs/CollectionAPI.md#countcollectionsbygameid) | **GET** /v1/collection/count/{game_id} | Count collections
 *CollectionAPI* | [**getCollectionById**](docs/CollectionAPI.md#getcollectionbyid) | **GET** /v1/collection/{game_id}/{id} | Retrieve collection by ID
 *CollectionAPI* | [**getCollections**](docs/CollectionAPI.md#getcollections) | **GET** /v1/collection | Retrieve collections
@@ -38,6 +39,8 @@ Class | Method | HTTP request | Description
 *ContractAPI* | [**setContractURI**](docs/ContractAPI.md#setcontracturi) | **PUT** /v1/contract/contract-uri | Update Contract URI
 *ContractAPI* | [**updateSaleStatus**](docs/ContractAPI.md#updatesalestatus) | **PUT** /v1/contract/sale-status | Update Sale status
 *DefaultAPI* | [**chatControllerWebhook**](docs/DefaultAPI.md#chatcontrollerwebhook) | **POST** /v1/chat/webhook | 
+*GameAPI* | [**createGame**](docs/GameAPI.md#creategame) | **POST** /v1/game | Create Game
+*GameAPI* | [**gameControllerGetGames**](docs/GameAPI.md#gamecontrollergetgames) | **GET** /v1/game | Retrieve all games
 *GameAPI* | [**getGameById**](docs/GameAPI.md#getgamebyid) | **GET** /v1/game/{game_id} | Retrieve Game
 *MintAPI* | [**airdropAssetToPlayer**](docs/MintAPI.md#airdropassettoplayer) | **POST** /v1/mint/airdrop | Airdrop asset to player
 *MintAPI* | [**awardAssetToPlayer**](docs/MintAPI.md#awardassettoplayer) | **POST** /v1/mint/award | Award asset to player
