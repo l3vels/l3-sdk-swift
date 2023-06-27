@@ -5,6 +5,7 @@ All URIs are relative to *https://api-dev.l3vels.xyz*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**countByGame**](AssetAPI.md#countbygame) | **GET** /v1/asset/count/{game_id} | Count assets
+[**createAsset**](AssetAPI.md#createasset) | **POST** /v1/asset | Create asset 
 [**getAssetById**](AssetAPI.md#getassetbyid) | **GET** /v1/asset/{game_id}/{id} | Retrieve asset by ID
 [**getAssets**](AssetAPI.md#getassets) | **GET** /v1/asset | Retrieve assets
 [**updateAsset**](AssetAPI.md#updateasset) | **PATCH** /v1/asset/{id} | Update asset
@@ -48,6 +49,48 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createAsset**
+```swift
+    open class func createAsset(authorization: String, body: AnyCodable) -> Observable<Asset>
+```
+
+Create asset 
+
+Create asset in specific collection. Example: Create asset AK-47 in collection Weapons
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let authorization = "authorization_example" // String | API key is associated with multiple games. Please include it in to use developers API.
+let body = "TODO" // AnyCodable | 
+
+// TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **String** | API key is associated with multiple games. Please include it in to use developers API. | 
+ **body** | **AnyCodable** |  | 
+
+### Return type
+
+[**Asset**](Asset.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -92,6 +92,78 @@ open class AssetAPI {
     }
 
     /**
+     Create asset 
+     
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter body: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - returns: Observable<Asset>
+     */
+    open class func createAsset(authorization: String, body: AnyCodable, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Asset> {
+        return Observable.create { observer -> Disposable in
+            let requestTask = createAssetWithRequestBuilder(authorization: authorization, body: body).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    observer.onNext(response.body)
+                case let .failure(error):
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            
+            return Disposables.create {
+                requestTask.cancel()
+            }
+        }
+    }
+
+    /**
+     Create asset 
+     
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter body: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func createAsset(authorization: String, body: AnyCodable, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Asset, ErrorResponse>) -> Void)) -> RequestTask {
+        return createAssetWithRequestBuilder(authorization: authorization, body: body).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create asset 
+     - POST /v1/asset
+     - Create asset in specific collection. Example: Create asset AK-47 in collection Weapons
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter body: (body)  
+     - returns: RequestBuilder<Asset> 
+     */
+    open class func createAssetWithRequestBuilder(authorization: String, body: AnyCodable) -> RequestBuilder<Asset> {
+        let localVariablePath = "/v1/asset"
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Authorization": authorization.encodeToJSON(),
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<Asset>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
+    }
+
+    /**
      Retrieve asset by ID
      
      - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 

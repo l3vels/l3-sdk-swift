@@ -253,5 +253,80 @@ open class GameAPI {
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
+
+    /**
+     Retrieve Game By Name
+     
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter name: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - returns: Observable<Game>
+     */
+    open class func getGameByName(authorization: String, name: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Game> {
+        return Observable.create { observer -> Disposable in
+            let requestTask = getGameByNameWithRequestBuilder(authorization: authorization, name: name).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    observer.onNext(response.body)
+                case let .failure(error):
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            
+            return Disposables.create {
+                requestTask.cancel()
+            }
+        }
+    }
+
+    /**
+     Retrieve Game By Name
+     
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter name: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func getGameByName(authorization: String, name: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Game, ErrorResponse>) -> Void)) -> RequestTask {
+        return getGameByNameWithRequestBuilder(authorization: authorization, name: name).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Retrieve Game By Name
+     - GET /v1/game/name/{name}
+     - Get Game by Name created on the platform.
+     - parameter authorization: (header) API key is associated with multiple games. Please include it in to use developers API. 
+     - parameter name: (path)  
+     - returns: RequestBuilder<Game> 
+     */
+    open class func getGameByNameWithRequestBuilder(authorization: String, name: String) -> RequestBuilder<Game> {
+        var localVariablePath = "/v1/game/name/{name}"
+        let namePreEscape = "\(APIHelper.mapValueToPathItem(name))"
+        let namePostEscape = namePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{name}", with: namePostEscape, options: .literal, range: nil)
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Authorization": authorization.encodeToJSON(),
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<Game>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
+    }
 }
 }

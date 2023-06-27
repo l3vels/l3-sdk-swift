@@ -27,6 +27,7 @@ All URIs are relative to *https://api-dev.l3vels.xyz*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AssetAPI* | [**countByGame**](docs/AssetAPI.md#countbygame) | **GET** /v1/asset/count/{game_id} | Count assets
+*AssetAPI* | [**createAsset**](docs/AssetAPI.md#createasset) | **POST** /v1/asset | Create asset 
 *AssetAPI* | [**getAssetById**](docs/AssetAPI.md#getassetbyid) | **GET** /v1/asset/{game_id}/{id} | Retrieve asset by ID
 *AssetAPI* | [**getAssets**](docs/AssetAPI.md#getassets) | **GET** /v1/asset | Retrieve assets
 *AssetAPI* | [**updateAsset**](docs/AssetAPI.md#updateasset) | **PATCH** /v1/asset/{id} | Update asset
@@ -38,10 +39,12 @@ Class | Method | HTTP request | Description
 *ContractAPI* | [**getContractURI**](docs/ContractAPI.md#getcontracturi) | **GET** /v1/contract/contract-uri | Get Contract URI
 *ContractAPI* | [**setContractURI**](docs/ContractAPI.md#setcontracturi) | **PUT** /v1/contract/contract-uri | Update Contract URI
 *ContractAPI* | [**updateSaleStatus**](docs/ContractAPI.md#updatesalestatus) | **PUT** /v1/contract/sale-status | Update Sale status
+*DefaultAPI* | [**chatControllerGetSqlReport**](docs/DefaultAPI.md#chatcontrollergetsqlreport) | **GET** /v1/chat/report | 
 *DefaultAPI* | [**chatControllerWebhook**](docs/DefaultAPI.md#chatcontrollerwebhook) | **POST** /v1/chat/webhook | 
 *GameAPI* | [**createGame**](docs/GameAPI.md#creategame) | **POST** /v1/game | Create Game
 *GameAPI* | [**gameControllerGetGames**](docs/GameAPI.md#gamecontrollergetgames) | **GET** /v1/game | Retrieve all games
 *GameAPI* | [**getGameById**](docs/GameAPI.md#getgamebyid) | **GET** /v1/game/{game_id} | Retrieve Game
+*GameAPI* | [**getGameByName**](docs/GameAPI.md#getgamebyname) | **GET** /v1/game/name/{name} | Retrieve Game By Name
 *MintAPI* | [**airdropAssetToPlayer**](docs/MintAPI.md#airdropassettoplayer) | **POST** /v1/mint/airdrop | Airdrop asset to player
 *MintAPI* | [**awardAssetToPlayer**](docs/MintAPI.md#awardassettoplayer) | **POST** /v1/mint/award | Award asset to player
 *MintAPI* | [**batchMintAssetByPlayer**](docs/MintAPI.md#batchmintassetbyplayer) | **POST** /v1/mint/batch-player | Batch mint assets by player
